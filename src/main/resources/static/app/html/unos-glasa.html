@@ -1,0 +1,28 @@
+<div ng-controller="unosGlasaCtrl">
+	
+	<h2>Glasanje za predlog</h2>
+		<hr>
+	
+		<table clas="table">
+			<tr>
+				<th>Naziv:</th>
+				<td>{{ poruka.naslov }}</td>
+			</tr>
+			<tr>
+				<th>Generički naziv:</th>
+				<td>{{ poruka.opis }}</td>
+			</tr>
+		</table>
+	
+	<br><br>
+	
+	<form  id="form5" name="form5">
+		<div class="form-group">
+			<label for="komentar">Komentar</label>
+			<input ng-model="komentar" id="komentar" name="komentar" class="form-control"  />
+		</div>
+			<button ng-click="za()" class="btn btn-success">Za</button>
+			<button ng-click="protiv()" class="btn btn-danger">Protiv</button>
+	</form>
+	
+</div>

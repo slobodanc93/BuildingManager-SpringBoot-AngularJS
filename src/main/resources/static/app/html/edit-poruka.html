@@ -1,0 +1,50 @@
+<div ng-controller="editPorukaCtrl">
+	
+	<!-- FORMA ZA IZMENU -->
+	<form  id="form3" name="form3">
+		
+		<h2>Izmena poruke</h2>
+		<hr>
+	
+		<div class="form-group">
+			<label for="naslovE">Naslov</label>
+			<input ng-model="formEdit.naslov" id="naslovE" name="naslovE" class="form-control"  />
+		</div>
+	
+		<div class="form-group">
+			<label for="tipE">Tip</label>
+                <select ng-model="formEdit.tip" name="tipE" id="tipE" class="form-control" ng-disabled="true">
+                  	<option disabled value="">---</option>
+                    <option value="Obavestenje">Obavestenje</option>
+                    <option value="Predlog">Predlog</option>
+                </select>
+		</div>
+		
+		<div class="form-group">
+			<label for="opisE">Opis</label>
+			<input ng-model="formEdit.opis" id="opisE" name="opisE" class="form-control" />
+		</div>
+		
+		<div class="form-group" ng-show="form3.tipE.$modelValue == 'Predlog'">
+			<label for="potrebanProcenatE">Potreban procenat</label>
+			 <div class="input-group mb-3">
+  					<div class="input-group-prepend">
+    				<span class="input-group-text" id="basic-addon1">%</span>
+					<input ng-model="formEdit.potrebanProcenat" id="potrebanProcenatE" name="potrebanProcenatE" class="form-control" />
+					</div>
+			  </div>
+		</div>
+	
+		<div class="form-group">
+			<label for="zgradaE">Zgrada</label>
+                <select ng-model="formEdit.zgradaId" name="zgradaE" id="zgradaE" class="form-control">
+                  	<option disabled value="">---</option>
+                    <option ng-repeat="z in zgrade" value="{{z.id}}"
+                    ng-selected="formEdit.zgradaId==z.id">{{z.adresa}}</option>
+                </select>
+		</div>
+		
+		<button ng-click="izmeni()" class="btn btn-success">Izmeni</button>	
+		
+	</form>
+</div>

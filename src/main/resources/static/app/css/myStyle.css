@@ -1,0 +1,56 @@
+/* Styling headings for adding & searching section */
+
+hr {
+	align: center;
+	width: 50%;
+}
+h2 {
+	text-align: center;
+}
+#form1 label, #form2 label, #form3 label{
+	font-weight: bold;
+}
+
+
+
+/* Navbar customizations */
+.navbar {
+	font-size: 18px;
+	height: 60px;
+}
+.navbar-brand {
+	color: #4286f4 !important;
+}
+.nav-link {
+	margin-left: 30px;
+}
+.nav-link:hover {
+	border-bottom: 1px solid white;
+	color: lightgrey !important;
+}
+
+
+/* Fix main content top start (because of navbar) */
+.main-content {
+	margin-top: 80px;
+}
+
+
+/* Taking off arrows in number input field */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Taking care that invalid input for custom created constraint is properly addressed 
+(workaround because we currently can't have client and server side validation side-by-side) */
+.form-control.ng-invalid-unique-constraint {
+  border-color: #dc3545 !important;
+ }
+ .form-control.ng-invalid-unique-constraint:focus {
+   box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+ }

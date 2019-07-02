@@ -1,0 +1,125 @@
+<div ng-controller="porukeCtrl">	
+	
+	
+	<!-- FORMA ZA DODAVANJE -->
+	<form id="form1" name="form1">
+		
+		<h2>Dodavanje poruke</h2>
+		<hr>
+		
+		<div class="form-group">
+			<label for="naslovA">Naslov</label>
+			<input ng-model="formAdd.naslov" id="naslovA" name="naslovA" class="form-control"  />
+		</div>
+	
+		<div class="form-group">
+			<label for="tipA">Tip</label>
+                <select ng-model="formAdd.tip" name="tipA" id="tipA" class="form-control">
+                  	<option disabled value="">---</option>
+                    <option value="Obavestenje">Obavestenje</option>
+                    <option value="Predlog">Predlog</option>
+                </select>
+		</div>
+		
+		<div class="form-group">
+			<label for="opisA">Opis</label>
+			<input ng-model="formAdd.opis" id="opisA" name="opisA" class="form-control" />
+		</div>
+		
+		<div class="form-group" ng-show="form1.tipA.$modelValue == 'Predlog'">
+			<label for="potrebanProcenatA">Potreban procenat</label>
+			<input ng-model="formAdd.potrebanProcenat" id="potrebanProcenatA" name="potrebanProcenatA" class="form-control" />
+		</div>
+	
+		<div class="form-group">
+			<label for="zgradaA">Zgrada</label>
+                <select ng-model="formAdd.zgradaId" name="zgradaA" id="zgradaA" class="form-control">
+                  	<option disabled value="">---</option>
+                    <option ng-repeat="z in zgrade" value="{{z.id}}">{{z.adresa}}</option>
+                </select>
+		</div>
+		
+		<button ng-click="add()" class="btn btn-success">Dodaj</button>	
+		
+	</form>
+	
+		
+	<!-- FORMA ZA PRETRAGU -->
+	<form id="form2" name="form2">
+		
+		<h2>Pretraga poruka</h2>
+		<hr>
+		
+		<div class="form-group">
+			<label for="zgradaS">Zgrada</label>
+                <select ng-model="formSearch.zgradaId" name="zgradaS" id="zgradaS" class="form-control">
+                  	<option disabled value="">---</option>
+                    <option ng-repeat="z in zgrade" value="{{z.id}}">{{z.adresa}}</option>
+                </select>
+		</div>
+		
+		<div class="form-group">
+			<label for="naslovS">Naslov</label>
+			<input ng-model="formSearch.naslov" id="naslovS" name="naslovS" class="form-control" />
+		</div>	
+	
+		
+		<div class="form-group">
+			<label for="tipS">Tip</label>
+                <select ng-model="formSearch.tip" name="tipS" id="tipS" class="form-control">
+                  	<option disabled value="">---</option>
+                    <option value="Obavestenje">Obavestenje</option>
+                    <option value="Predlog">Predlog</option>
+                </select>
+		</div>
+		
+		<button ng-click="search()" type="button" class="btn btn-primary">Traži</button>
+		<button ng-click="resetSearch()" type="button" class="btn btn-danger">Ponisti pretragu</button>
+		<div class="clearfix"></div>
+	
+	</form>
+	
+
+<!-- NAVIGACIJA -->
+<br>
+<div class="btn-group pull-right">
+	<button class="btn btn-outline-secondary" ng-click="nazad()" ng-disabled="pageNum == 0">Nazad</button>
+	<button class="btn btn-outline-secondary" ng-click="napred()" ng-disabled="pageNum == totalPages-1">Napred</button>
+</div>
+<br><br>
+
+<!-- SADRZAJ GLAVNE TABELE -->	
+<div class="table-responsive">
+<table class="table table-striped">
+	<thead class="thead thead-dark">
+		<tr>
+			<th>Naslov</th>
+			<th>Tip</th>
+			<th>Opis</th>
+			<th>Potreban %</th>
+			<th>Zgrada</th>
+			<th>Akcije</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="p in poruke">
+			<td>{{p.naslov}}</td>
+			<td>{{p.tip}}</td>
+			<td>{{p.opis}}</td>
+			<td>
+				{{p.potrebanProcenat}}
+				<label ng-show="p.potrebanProcenat != null">%</label>
+			</td>
+			<td>{{p.zgradaAdresa}}</td>
+			<td>
+				<button ng-click="edit(p.id)" class="btn btn-warning">Izmeni</button>
+				<button ng-click="delete(p.id)" class="btn btn-danger">Obriši</button>
+				<button ng-click="unosGlasa(p.id)" class="btn btn-info" ng-show="p.potrebanProcenat != null"
+				ng-disabled="p.prihvacen">Glasaj</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+</div>
